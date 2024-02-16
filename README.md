@@ -23,3 +23,21 @@ Enquanto ela não está ativa, apertar as setas do teclado não causa movimenta�
 Sugestão: para saber a posição e tamanho de um elemento, pesquise sobre as propriedades offsetLeft, offsetTop, clientWidth, clientHeight.
 
 Bônus: depois de fazer o exercício como descrito, faça ele funcionar com 5 divs pequenas independentes sem adicionar nenhuma nova função no seu código. Sugestão: activeMovable = this dentro de um ouvinte de evento de clique, onde activeMovable é uma variável global.
+
+
+
+Versão 2 do exercício:
+
+Refaça o exercício anterior (versão básica, não bônus), mas agora a div pequena é movimentada clicando e arrastando com o mouse, não mais com as setas do teclado.
+
+Ou seja, ao clicar e segurar, a div pequena fica “ativa” (muda de cor) e passa a seguir a posição do mouse.
+
+Ao soltar o mouse, ela fica “inativa” de novo, ou seja, volta à cor original e fica parada onde o mouse soltou.
+
+Se, ao arrastar a div pequena, o mouse sair da borda da div externa, a div pequena não deve continuar, ele deve ficar “bloqueada” na parede.
+
+Mas a div pequena ainda está “ativa” enquanto o mouse estiver sendo segurado, ou seja, se você continuar segurando o mouse e voltar a posicioná-lo dentro das bordas da div externa, a div pequena imediatamente volta a acompanhar a posição do mouse.
+
+Sugestão: quando “mousedown”, registre a posição do mouse. Quando “mousemove”, calcule o deslocamento do mouse e aplique na div. Já quando o mouse sair para fora do container, pense aí !
+
+Bônus: depois de fazer o exercício como descrito, faça ele funcionar com 5 divs pequenas independentes sem adicionar nenhuma nova função no seu código.
