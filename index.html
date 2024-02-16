@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 5 JS - Questão 7</title>
+    <style>
+        #container {
+            position: relative;
+            width: 80%;
+            height: 80vh;
+            border: 1px solid black;
+            overflow: hidden;
+            background-image: url('./img/fundo.jpg');
+            background-size: cover; 
+        }
+
+        #square {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img{
+            width: -webkit-fill-available;
+        }
+
+        .bg{
+            background-color: rgba(253, 237, 235,0.3);
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="square" class="bg"><img src="img/joaninha-removebg-preview.png" alt=""></div>
+    </div>
+
+    <script>
+        const container = document.getElementById("container");
+        const square = document.getElementById("square");
+        let isActive = false;
+        const stepNormal = 10;
+        const stepShift = 100;
+
+        
+        // Função para desativar a div
+        function deactivateDiv() {
+            isActive = false;
+            square.classList.add("bg");
+        }
+        
+        // Função para ativar a div
+        function activateDiv() {
+            isActive = true;
+            square.classList.remove("bg");
+        }
+        // Função para mover a div
+        function moveDiv(direction, step) {
+            const currentPosition = {
+                top: square.offsetTop,
+                left: square.offsetLeft
+            };
+
+            switch (direction) {
+                case "up":
+                    currentPosition.top -= step;
+                    break;
+                case "down":
+                    currentPosition.top += step;
+                    break;
+                case "left":
+                    currentPosition.left -= step;
+                    break;
+                case "right":
+                    currentPosition.left += step;
+                    break;
+            }
+
+            // Verifica se a nova posição está dentro dos limites do container
+            if (
+                currentPosition.top >= 0 &&
+                currentPosition.left >= 0 &&
+                currentPosition.top + square.clientHeight <= container.clientHeight &&
+                currentPosition.left + square.clientWidth <= container.clientWidth
+            ) {
+                square.style.top = currentPosition.top + "px";
+                square.style.left = currentPosition.left + "px";
+            }
+        }
+
+        // Evento de clique na div
+        square.addEventListener("click", function() {
+            if (!isActive) {
+                activateDiv();
+            } else {
+                deactivateDiv();
+            }
+        });
+
+        // Evento de tecla pressionada
+        document.addEventListener("keydown", function(event) {
+            if (isActive) {
+                let step = event.shiftKey ? stepShift : stepNormal;
+                switch (event.key) {
+                    case "ArrowUp":
+                        moveDiv("up", step);
+                        break;
+                    case "ArrowDown":
+                        moveDiv("down", step);
+                        break;
+                    case "ArrowLeft":
+                        moveDiv("left", step);
+                        break;
+                    case "ArrowRight":
+                        moveDiv("right", step);
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
